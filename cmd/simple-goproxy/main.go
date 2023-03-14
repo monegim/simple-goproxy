@@ -5,6 +5,7 @@ import (
 	rawLog "log"
 	"os"
 
+	"github.com/monegim/simple-goproxy/proxy"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -31,6 +32,16 @@ func main() {
 	log.SetFormatter(&log.TextFormatter{
 		FullTimestamp: true,
 	})
+
+	opts := &proxy.Options{
+		Debug: config.Debug,
+		Addr: config.Addr,
+	}
+
+	p, err := proxy.NewProxy(opts)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func loadConfig() *Config {
