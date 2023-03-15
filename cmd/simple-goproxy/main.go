@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	rawLog "log"
 	"os"
 
@@ -35,13 +36,20 @@ func main() {
 
 	opts := &proxy.Options{
 		Debug: config.Debug,
-		Addr: config.Addr,
+		Addr:  config.Addr,
 	}
 
 	p, err := proxy.NewProxy(opts)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	if config.version {
+		fmt.Println("simple-goproxy: " + p.Version)
+		os.Exit(0)
+	}
+
+	log.Infof("simple go proxy version %v\n",p.Version)
 }
 
 func loadConfig() *Config {

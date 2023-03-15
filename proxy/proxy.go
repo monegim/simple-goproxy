@@ -15,10 +15,12 @@ type Proxy struct {
 	client *http.Client
 	server *http.Server
 }
+
 const VERSION = "1.6.0"
+
 func NewProxy(opts *Options) (*Proxy, error) {
 	proxy := &Proxy{
-		Opts: opts,
+		Opts:    opts,
 		Version: VERSION,
 	}
 
