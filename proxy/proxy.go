@@ -23,6 +23,10 @@ func NewProxy(opts *Options) (*Proxy, error) {
 		Opts:    opts,
 		Version: VERSION,
 	}
-
+	proxy.client := &http.Client{
+		Transport: &http.Transport{
+			
+		},
+	}
 	return proxy, nil
 }
